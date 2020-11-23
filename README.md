@@ -4,10 +4,9 @@
 
 ## Build Setup
 
-goods  ×
-index   ×
-seckill    ×
 
 
+user  :ycy
+pass :  123
 
 
