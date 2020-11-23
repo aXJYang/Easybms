@@ -4,13 +4,16 @@ Vue.use(Vuex)
 
 import actions from "./actions"
 import {state,getters,mutations} from "./mutations"
-import order from "./modules/order"
 import cate from "./modules/cate"
 import goods from "./modules/goods"
+import banner from "./modules/banner"
+import seckill from "./modules/seckill"
+import vip from "./modules/vip"
+import specs from "./modules/specs"
 
 export default new Vuex.Store({
     state,mutations,getters,actions,
     modules:{
-        order,cate,goods
+        cate,goods,banner,seckill,vip,specs
     }
 })

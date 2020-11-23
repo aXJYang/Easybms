@@ -57,8 +57,8 @@ export default {
   },
   methods: {
     ...mapActions({
-       reqList: "order/reqList",
-       reqCount:"order/reqCount"
+       reqList: "goods/reqList",
+       reqCount:"goods/reqCount"
     }),
     // 取消按钮
     why() {
@@ -79,6 +79,8 @@ export default {
     getOne(id) {
       reqSpecsDetail(id).then(res => {
         this.user = res.data.list[0];
+        console.log(this.user);
+        console.log("==================");
         // 获取数据转化为 {}  对象形式
       this.attrArr=JSON.parse(this.user.attrs).map(item=>({value:item})
       )

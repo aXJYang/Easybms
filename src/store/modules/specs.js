@@ -1,56 +1,50 @@
-import {reqSpecsList,reqSpecsCount} from "../../utils/http"
+import { reqSpecsList,reqSpecsCount } from "../../utils/http"
 const state = {
     //分类list
-    list:[],
-    //总数
-    total:0,
-    size:2,
-    page:1,
+    list: [],
+    total: 0,
+    size: 3,
+    page: 1,
 }
 
 const mutations = {
     //修改list
-    changeList(state,arr){
-        state.list=arr;
-        console.log(state.list);
+    changeList(state, arr) {
+        state.list = arr;
     },
-    changeTotal(state,num){
-        state.total=num;
+    changeTotal(state, num){
+        state.total = num
     },
-    changePage(state,page){
-        state.page=page;
+    changePage(state, page){
+        state.page = page
     }
 }
 
 const actions = {
     //发起请求
-    reqList(context){
+    reqList(context, bool) {
+        let p = bool ? {} : { page: context.state.page, size: context.state.size }
         //发请求，成功之后，修改list
-        reqSpecsList({page:context.state.page,size:context.state.size}).then(res=>{
-            let list=res.data.list?res.data.list:[]
-            
+        reqSpecsList(p).then(res => {
+            let list = res.data.list ? res.data.list : []
+
             if(list.length==0&&context.state.page>1){
                 context.commit("changePage",context.state.page-1)
                 context.dispatch("reqList");
                 return;
             }
-
-
-            //attrs JSON.parse()
-            list.forEach(item=>{
-                item.attrs=JSON.parse(item.attrs)
+            list.forEach(item => {
+                item.attrs = JSON.parse(item.attrs)
             })
-            context.commit("changeList",list)
+            context.commit("changeList", list)
         })
     },
-    //请总数
     reqCount(context){
         reqSpecsCount().then(res=>{
             context.commit("changeTotal",res.data.list[0].total)
         })
     },
-    //修改页码
-    changePage(context,page){
+    reqPage(context,page){
         //修改页码
         context.commit("changePage",page)
         //从新请求数据
@@ -59,7 +53,7 @@ const actions = {
 }
 
 const getters = {
-    list(state){
+    list(state) {
         return state.list
     },
     total(state){
@@ -68,7 +62,6 @@ const getters = {
     size(state){
         return state.size
     },
-
 }
 
 export default {

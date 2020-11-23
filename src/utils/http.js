@@ -386,3 +386,141 @@ export const reqGoodsCount = () => {
         method: "get",
     })
 }
+// ==============会员管理操作================
+// 会员列表
+export const reqVipList = () => {
+    return axios({
+        url: baseUrl + '/api/memberlist',
+        method: "get"
+    })
+}
+
+// 获取一条会员数据
+export const reqVipDetail = (uid) => {
+    return axios({
+        url: baseUrl + '/api/memberinfo',
+        method: "get",
+        params: {
+            uid: uid
+        }
+    })
+}
+
+// 修改会员数据
+export const reqVipUpdate = (vip) => {
+    return axios({
+        url: baseUrl + '/api/memberedit',
+        method: "post",
+        data: qs.stringify(vip)
+    })
+}
+
+// ==============轮播图管理操作================
+// 轮播图添加
+export const reqBannerAdd = (form) => {
+    let d=new FormData()
+    for(let i in form){
+        d.append(i,form[i])
+    }
+    return axios({
+        url: baseUrl + '/api/banneradd',
+        method: 'post',
+        data: d
+    })
+}
+
+
+// 轮播图列表
+export const reqBannerList = () => {
+    return axios({
+        url: baseUrl + '/api/bannerlist',
+        method: 'get'
+    })
+}
+
+// 获取一条轮播图数据
+export const reqBannerDetail = (id) => {
+    return axios({
+        url: baseUrl + '/api/bannerinfo',
+        method: "get",
+        params: {
+            id: id
+        }
+    })
+}
+
+// 修改轮播图数据
+export const reqBannerUpdate = (form) => {
+    let d=new FormData()
+    for(let i in form){
+        d.append(i,form[i])
+    }
+    return axios({
+        url: baseUrl + '/api/banneredit',
+        method: 'post',
+        data: d
+    })
+}
+
+
+// 删除轮播图
+export const reqBannerDel = (id) => {
+    return axios({
+        url: baseUrl + '/api/bannerdelete',
+        method: "post",
+        data: qs.stringify({
+            id: id
+        })
+    })
+}
+
+
+// ==============秒杀管理操作================
+// 添加秒杀活动
+export const reqSeckillAdd = (form) => {
+    return axios({
+        url: baseUrl + '/api/seckadd',
+        method: "post",
+        data: qs.stringify(form)
+    })
+}
+
+// 获取秒杀列表
+export const reqSeckillList = () => {
+    return axios({
+        url: baseUrl + '/api/secklist',
+        method: "get"
+    })
+}
+
+// 获取一条秒杀列表
+export const reqSeckillDetail = (id) => {
+    return axios({
+        url: baseUrl + '/api/seckinfo',
+        method: "GET",
+        params: {
+            id: id
+        }
+    })
+}
+
+
+// 修改秒杀活动
+export const reqSeckillUpdate = (form) => {
+    return axios({
+        url: baseUrl + '/api/seckedit',
+        method: "post",
+        data: qs.stringify(form)
+    })
+}
+
+// 删除秒杀活动
+export const reqSeckillDel = (id) => {
+    return axios({
+        url: baseUrl + '/api/seckdelete',
+        method: "post",
+        data: qs.stringify({
+            id: id
+        })
+    })
+}

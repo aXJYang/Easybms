@@ -4,7 +4,8 @@
       border:tree-props="{ children: 'children' }">
       <el-table-column fixed prop="id" label="规格编号" width="150">
       </el-table-column>
-      <el-table-column prop="specsname" label="规格名称"> </el-table-column>
+      <el-table-column prop="specsname" label="规格名称" >
+         </el-table-column>
       <el-table-column label="规格属性" sortable>
            <template slot-scope="scope">
             <el-tag v-for="item in scope.row.attrs" :key="item">{{item}}</el-tag>
@@ -45,16 +46,16 @@ export default {
   computed: {
     ...mapGetters({
       // 数据在vuex里l
-      list:"order/list",
-      total:"order/total",
-      size:"order/size" 
+      list:"goods/list",
+      total:"goods/total",
+      size:"goods/size" 
     })
   },
   methods: {
     ...mapActions({
-      reqList:"order/reqList",
-      "changePage":"order/changePage",
-      reqCount:"order/reqCount"
+      reqList:"goods/reqList",
+      "changePage":"goods/changePage",
+      reqCount:"goods/reqCount"
 
     }),
 
